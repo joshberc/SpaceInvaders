@@ -9,6 +9,7 @@ namespace SpaceInvaders
         private GraphicsDeviceManager   _graphics;
         private SpriteBatch             _spriteBatch;
         private SpriteFont              _atroxFont;
+        private Texture2D               _sprites; 
 
         public Game()
         {
@@ -32,6 +33,7 @@ namespace SpaceInvaders
         {
             _spriteBatch    = new SpriteBatch(GraphicsDevice);
             _atroxFont      = Content.Load<SpriteFont>("Atrox");
+            _sprites        = Content.Load<Texture2D>("sprites");
         }
 
         /// <summary>
@@ -56,8 +58,11 @@ namespace SpaceInvaders
         {
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin();
-            _spriteBatch.DrawString(_atroxFont, "Space Invaders", new Vector2(10,10), Color.White);
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            
+            _spriteBatch.DrawString(_atroxFont, "Space Invaders", new Vector2(250,10), Color.White);
+            _spriteBatch.Draw(_sprites, new Vector2(60,60), new Rectangle(98, 485, 11, 7), Color.White);
+            
             _spriteBatch.End();
 
             base.Draw(gameTime);
