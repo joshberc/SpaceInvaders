@@ -69,8 +69,9 @@ namespace SpaceInvaders
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             
             _spriteBatch.DrawString(_atroxFont, "Space Invaders", new Vector2(250,10), Color.White);
-            _spriteBatch.Draw(_playerSprite, new Vector2(60,60), new Rectangle(0, 0, 59, 29), Color.White);
-            
+            _spriteBatch.Draw(_playerSprite, new Vector2(60,60), Color.White);
+            _spriteBatch.Draw(_redEnemySprite, new Vector2(150, 60), Color.White);
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
