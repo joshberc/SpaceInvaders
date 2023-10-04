@@ -2,19 +2,23 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Modules.Game;
+using SpaceInvaders.Modules.Util;
 
 namespace SpaceInvaders.Modules.Sprite
 {
-    internal class Sprite : GameInterface
+    public class Sprite : GameInterface
     {
         #region Variables
+        public Texture2D        texture;
         private Vector2         position;
         private Vector2         origin;
-        private float           scale;
+        private Vector2         scale;
         private float           rotation;
         private Color           color;
-        private SpriteEffect    effect;
+        private SpriteEffects   effect;
         private float           depth;
+
+        private float           speed;
         #endregion
 
         #region Access Methods
@@ -30,7 +34,7 @@ namespace SpaceInvaders.Modules.Sprite
             set { origin = value; }
         }
 
-        public float Scale
+        public Vector2 Scale
         {
             get { return scale; }
             set { scale = value; }
@@ -47,7 +51,7 @@ namespace SpaceInvaders.Modules.Sprite
             get { return color; }
             set { color = value; }
         }
-        public SpriteEffect Effect
+        public SpriteEffects Effect
         {
             get { return effect; }
             set { effect = value; }
@@ -58,27 +62,30 @@ namespace SpaceInvaders.Modules.Sprite
             get { return depth; }
             set { depth = value; }
         }
+
+        public float Speed
+        {
+            get { return speed; }
+            set { speed = value; }
+        }
         #endregion
 
         #region Core
-        public void Initialize()
+        public virtual void Initialize()
         {
-            throw new System.NotImplementedException();
         }
 
-        public void LoadContent()
+        public virtual void LoadContent()
         {
-            throw new System.NotImplementedException();
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
-            throw new System.NotImplementedException();
         }
 
-        public void Draw(GameTime gameTime)
+        public virtual void Draw(GameTime gameTime)
         {
-            throw new System.NotImplementedException();
+            Global.Instance.CoreGame.SpriteBatch.Draw(texture, position, null, color, rotation, origin, scale, effect, depth);
         }
         #endregion
     }

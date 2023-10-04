@@ -18,6 +18,6 @@ namespace SpaceInvaders.Modules.Util
             get { return (instance); }
         }
 
-        public SpaceInvaders CoreGame {  get; set; }
+        public SpaceInvaders CoreGame { get; set; }
     }
 }

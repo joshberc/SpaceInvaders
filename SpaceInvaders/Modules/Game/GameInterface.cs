@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace SpaceInvaders.Modules.Game
 {
@@ -9,23 +7,23 @@ namespace SpaceInvaders.Modules.Game
         /// <summary>
         /// Initialize object.
         /// </summary>
-        void Initialize();
+        abstract void Initialize();
 
         /// <summary>
-        /// Loads the content.
+        /// Load the content.
         /// </summary>
-        void LoadContent();
+        abstract void LoadContent();
 
         /// <summary>
         /// Handle input and game logic.
         /// </summary>
         /// <param name="gameTime"></param>
-        void Update(GameTime gameTime);
+        abstract void Update(GameTime gameTime);
 
         /// <summary>
-        /// Draws objects to screen.
+        /// Draw objects to screen.
         /// </summary>
         /// <param name="gameTime"></param>
-        void Draw(GameTime gameTime);
+        abstract void Draw(GameTime gameTime);
     }
 }
