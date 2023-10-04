@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            using (var game = new SpaceInvaders.Game())
+            using (var game = new SpaceInvaders())
             {
                 game.Run();
             }
