@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace SpaceInvaders.Modules.Manager
 {
-    class TManager<T> where T : GameObject
+    public class TManager<T> where T : GameObject
     {
         #region Variables
         public int ID { get; set; }

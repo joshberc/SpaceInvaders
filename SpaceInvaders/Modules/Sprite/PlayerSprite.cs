@@ -69,6 +69,10 @@ namespace SpaceInvaders.Modules.Sprite
 
         private void FireBullet()
         {
+            Texture2D missileTexture = Global.Instance.CoreGame.MissileTexture;
+            MissileSprite newMissile = new MissileSprite(new Sprite(missileTexture, new Vector2(400, 550), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
+
+            Global.Instance.CoreGame.MissileController.Add(newMissile);
         }
         #endregion
     }

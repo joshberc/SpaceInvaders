@@ -16,6 +16,7 @@ namespace SpaceInvaders
         private SpriteBatch             spriteBatch;
         private SpriteFont              atroxFont;
         private Texture2D               playerTexture;
+        private Texture2D               missileTexture;
         private Texture2D               redEnemyTexture;
         private Texture2D               blueEnemyTexture;
         private Texture2D               greenEnemyTexture;
@@ -23,13 +24,23 @@ namespace SpaceInvaders
 
         private TManager<GameObject> InvaderManager = new TManager<GameObject>();
         private TManager<GameObject> PlayerManager = new TManager<GameObject>();
-        private TManager<GameObject> BulletManager = new TManager<GameObject>();
+        private TManager<GameObject> MissileManager = new TManager<GameObject>();
         #endregion
 
         #region Access Methods
         public SpriteBatch SpriteBatch
         {
             get { return spriteBatch; }
+        }
+
+        public TManager<GameObject> MissileController
+        {
+            get { return MissileManager; }
+        }
+
+        public Texture2D MissileTexture
+        {
+            get { return missileTexture; }
         }
         #endregion
 
@@ -65,6 +76,7 @@ namespace SpaceInvaders
 
             atroxFont           = Content.Load<SpriteFont>("Atrox");
             playerTexture       = Content.Load<Texture2D>("player");
+            missileTexture      = Content.Load<Texture2D>("missile");
             redEnemyTexture     = Content.Load<Texture2D>("enemy-red");
             blueEnemyTexture    = Content.Load<Texture2D>("enemy-blue");
             greenEnemyTexture   = Content.Load<Texture2D>("enemy-green");
@@ -88,6 +100,7 @@ namespace SpaceInvaders
             //Update Sprites
             PlayerManager.Update(gameTime); 
             InvaderManager.Update(gameTime);
+            MissileManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -107,6 +120,7 @@ namespace SpaceInvaders
             //Update Sprites
             PlayerManager.Draw(gameTime);
             InvaderManager.Draw(gameTime);
+            MissileManager.Draw(gameTime);
 
             spriteBatch.End();
 
