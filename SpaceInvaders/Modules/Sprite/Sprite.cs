@@ -1,12 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Modules.Game;
 using SpaceInvaders.Modules.Util;
 
 namespace SpaceInvaders.Modules.Sprite
 {
-    public class Sprite : GameInterface
+    public class Sprite : GameObject
     {
         #region Variables
         public Texture2D        texture;

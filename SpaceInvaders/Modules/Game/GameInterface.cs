@@ -2,6 +2,9 @@
 
 namespace SpaceInvaders.Modules.Game
 {
+    /// <summary>
+    /// Generic interface that holds all the core Monogame methods.
+    /// </summary>
     public interface GameInterface
     {
         /// <summary>

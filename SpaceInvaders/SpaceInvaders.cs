@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SpaceInvaders.Modules.Game;
+using SpaceInvaders.Modules.Manager;
 using SpaceInvaders.Modules.Sprite;
 using SpaceInvaders.Modules.Util;
 
@@ -19,6 +21,10 @@ namespace SpaceInvaders
         private Texture2D               yellowEnemyTexture;
 
         private InvaderSprite           redInvaderSprite;
+
+        private TManager<GameObject> SpriteManager = new TManager<GameObject>();
+        private TManager<GameObject> PlayerManager = new TManager<GameObject>();
+        private TManager<GameObject> BulletManager = new TManager<GameObject>();
         #endregion
 
         #region Access Methods
@@ -33,6 +39,10 @@ namespace SpaceInvaders
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
+
             IsMouseVisible = true;
         }
 
