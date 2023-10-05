@@ -8,7 +8,7 @@ namespace SpaceInvaders.Modules.Sprite
     public class Sprite : GameObject
     {
         #region Variables
-        public Texture2D        texture;
+        private Texture2D       spriteTexture;
         private Vector2         position;
         private Vector2         origin;
         private Vector2         scale;
@@ -16,11 +16,16 @@ namespace SpaceInvaders.Modules.Sprite
         private Color           color;
         private SpriteEffects   effect;
         private float           depth;
-
         private float           speed;
         #endregion
 
         #region Access Methods
+        public Texture2D SpriteTexture
+        {
+            get { return spriteTexture; } 
+            set {  spriteTexture = value; }
+        }
+
         public Vector2 Position
         {
             get { return position; }
@@ -70,21 +75,48 @@ namespace SpaceInvaders.Modules.Sprite
         #endregion
 
         #region Core
-        public virtual void Initialize()
+        public Sprite()
         {
+            Reset();
         }
 
-        public virtual void LoadContent()
+        public Sprite(Vector2 newPosition)
         {
+            Reset();
+            position = newPosition;
         }
 
-        public virtual void Update(GameTime gameTime)
+        public Sprite(Texture2D newSpriteTexture, Vector2 newPosition, Color newColor, Vector2 newScale, SpriteEffects newEffects, float newSpeed)
         {
+            Reset();
+            spriteTexture = newSpriteTexture;
+            position = newPosition;
+            scale = newScale;
+            color = newColor;
+            effect = newEffects;
+            speed = newSpeed;
         }
 
-        public virtual void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
-            Global.Instance.CoreGame.SpriteBatch.Draw(texture, position, null, color, rotation, origin, scale, effect, depth);
+            Global.Instance.CoreGame.SpriteBatch.Draw(spriteTexture, position, null, color, rotation, origin, scale, effect, depth);
+        }
+        #endregion
+
+        #region Helper Functions
+        /// <summary>
+        /// Assign default values.
+        /// </summary>
+        private void Reset()
+        {
+            position = new Vector2(0.0f);
+            origin = new Vector2(20, 0);
+            scale = new Vector2(1, 1);
+            rotation = 0.0f;
+            color = Color.White;
+            effect = SpriteEffects.None;
+            depth = 0.0f;
+            speed = 0.0f;
         }
         #endregion
     }

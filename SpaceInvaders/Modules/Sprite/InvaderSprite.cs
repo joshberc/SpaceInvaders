@@ -5,18 +5,8 @@ namespace SpaceInvaders.Modules.Sprite
 {
     public class InvaderSprite : Sprite
     {
-        public InvaderSprite(Texture2D _sprite, Vector2 _position, Vector2 _origin, Vector2 _scale, float _rotation, Color _color, SpriteEffects _effect, float _depth)
+        public InvaderSprite(Sprite newSprite) : base(newSprite.SpriteTexture, newSprite.Position, newSprite.Color, newSprite.Scale, newSprite.Effect, newSprite.Speed)
         {
-            texture = _sprite;
-            Position = _position;
-            Origin = _origin;
-            Scale = _scale;
-            Rotation = _rotation;
-            Color = _color;
-            Effect = _effect;
-            Depth = _depth;
-
-            Speed = 1.0f;
         }
 
         public override void Update(GameTime gameTime)
@@ -24,15 +14,17 @@ namespace SpaceInvaders.Modules.Sprite
             Vector2 position = Position;
             position.X += Speed;
 
-            if (position.X < 10.0f)
+            if (position.X < 20.0f)
             {
-                Speed = 1.0f;
+                Speed = 1.5f;
             }
-            else if (position.X > 500.0f)
+            else if (position.X > 780.0f)
             {
-                Speed = -1.0f;
+                Speed = -1.5f;
             }
             Position = position;
+
+            base.Update(gameTime);
         }
     }
 }

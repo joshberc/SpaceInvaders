@@ -5,6 +5,7 @@ using SpaceInvaders.Modules.Game;
 using SpaceInvaders.Modules.Manager;
 using SpaceInvaders.Modules.Sprite;
 using SpaceInvaders.Modules.Util;
+using System;
 
 namespace SpaceInvaders
 {
@@ -20,9 +21,7 @@ namespace SpaceInvaders
         private Texture2D               greenEnemyTexture;
         private Texture2D               yellowEnemyTexture;
 
-        private InvaderSprite           redInvaderSprite;
-
-        private TManager<GameObject> SpriteManager = new TManager<GameObject>();
+        private TManager<GameObject> InvaderManager = new TManager<GameObject>();
         private TManager<GameObject> PlayerManager = new TManager<GameObject>();
         private TManager<GameObject> BulletManager = new TManager<GameObject>();
         #endregion
@@ -71,7 +70,7 @@ namespace SpaceInvaders
             greenEnemyTexture   = Content.Load<Texture2D>("enemy-green");
             yellowEnemyTexture  = Content.Load<Texture2D>("enemy-yellow");
 
-            redInvaderSprite = new InvaderSprite(redEnemyTexture, new Vector2(150, 60), Vector2.Zero, new Vector2(1,1), 0.0f, Color.White, SpriteEffects.None, 0.0f);
+            SetupInvaders();
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace SpaceInvaders
             }
 
             //Update Sprites
-            redInvaderSprite.Update(gameTime);
+            InvaderManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -105,11 +104,55 @@ namespace SpaceInvaders
             spriteBatch.Draw(playerTexture, new Vector2(60,60), Color.White);
 
             //Update Sprites
-            redInvaderSprite.Draw(gameTime);
+            InvaderManager.Draw(gameTime);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+        #endregion
+
+        #region Helper Functions
+
+        private void SetupInvaders()
+        {
+            Vector2 start   = new Vector2(10.0f, 80.0f);
+            int width     = 8;
+            int height    = 4;
+            int xOffset   = 65;
+            int yOffset   = 40;
+            float speed     = 1.5f;
+
+            Vector2 invaderPosition = start;
+            Texture2D rowSprite = redEnemyTexture;
+
+            //Populate Invader Manager
+            for(int y  = 0; y < height; y++, invaderPosition.Y = start.Y + (y * yOffset))
+            {
+                //Reset X position
+                invaderPosition.X = start.X;
+
+                //Update sprite
+                switch (y)
+                {
+                    case 2:
+                        rowSprite = yellowEnemyTexture;
+                        break;
+                    case 3:
+                        rowSprite = blueEnemyTexture;
+                        break;
+                    case 4:
+                        rowSprite = greenEnemyTexture;
+                        break;
+                }
+                    
+                for (int x = 0; x < width; x++, invaderPosition.X = start.X + (x * xOffset))
+                {                               
+                    InvaderSprite sprite = new InvaderSprite(new Sprite(rowSprite, invaderPosition, Color.White, new Vector2(1, 1), SpriteEffects.None, speed));
+                    InvaderManager.Add(sprite);
+                }
+            }
+            
         }
         #endregion
     }
