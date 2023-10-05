@@ -70,6 +70,7 @@ namespace SpaceInvaders
             greenEnemyTexture   = Content.Load<Texture2D>("enemy-green");
             yellowEnemyTexture  = Content.Load<Texture2D>("enemy-yellow");
 
+            SetupPlayer();
             SetupInvaders();
         }
 
@@ -85,6 +86,7 @@ namespace SpaceInvaders
             }
 
             //Update Sprites
+            PlayerManager.Update(gameTime); 
             InvaderManager.Update(gameTime);
 
             base.Update(gameTime);
@@ -101,9 +103,9 @@ namespace SpaceInvaders
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             
             spriteBatch.DrawString(atroxFont, "Space Invaders", new Vector2(250,10), Color.White);
-            spriteBatch.Draw(playerTexture, new Vector2(60,60), Color.White);
 
             //Update Sprites
+            PlayerManager.Draw(gameTime);
             InvaderManager.Draw(gameTime);
 
             spriteBatch.End();
@@ -113,6 +115,11 @@ namespace SpaceInvaders
         #endregion
 
         #region Helper Functions
+        private void SetupPlayer()
+        {
+            PlayerSprite sprite = new PlayerSprite(new Sprite(playerTexture, new Vector2(400, 550), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
+            PlayerManager.Add(sprite);
+        }
 
         private void SetupInvaders()
         {
