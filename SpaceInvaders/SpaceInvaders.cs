@@ -9,7 +9,7 @@ using System;
 
 namespace SpaceInvaders
 {
-    public class SpaceInvaders : Microsoft.Xna.Framework.Game
+    public class SpaceInvaders : Game
     {
         #region Variables
         private GraphicsDeviceManager   graphics;

@@ -22,36 +22,38 @@ namespace SpaceInvaders.Modules.Sprite
         public override void Update(GameTime gameTime)
         {
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Z) == true)
+            //Move Left
+            if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
             {
                 Vector2 pos = Position;
                 pos.X -= 2.0f;
 
-                if (pos.X < 10.0f)
+                if (pos.X < 40.0f)
                 {
-                    pos.X = 10.0f;
+                    pos.X = 40.0f;
                 }
                 Position = pos;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.X) == true)
+            //Move Right
+            if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
             {
                 Vector2 pos = Position;
                 pos.X += 2.0f;
-                if (pos.X > 800 - 58.0f)  
+                if (pos.X > 760)  
                 {
-                    pos.X = 800 - 58.0f;
+                    pos.X = 760;
                 }
 
                 Position = pos;
             }
 
             // Fire bullet....
-            if ((Keyboard.GetState().IsKeyDown(Keys.Enter) == true) && (shooting == false))
+            if ((Keyboard.GetState().IsKeyDown(Keys.Space) == true) && (shooting == false))
             {
                 shooting = true;
                 FireBullet();
             }
-            if ((Keyboard.GetState().IsKeyUp(Keys.Enter) == true) && (shooting == true))
+            if ((Keyboard.GetState().IsKeyUp(Keys.Space) == true) && (shooting == true))
             {
                 shooting = false;
             }
@@ -70,7 +72,7 @@ namespace SpaceInvaders.Modules.Sprite
         private void FireBullet()
         {
             Texture2D missileTexture = Global.Instance.CoreGame.MissileTexture;
-            MissileSprite newMissile = new MissileSprite(new Sprite(missileTexture, new Vector2(400, 550), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
+            MissileSprite newMissile = new MissileSprite(new Sprite(missileTexture, new Vector2(Position.X + 27, Position.Y), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
 
             Global.Instance.CoreGame.MissileController.Add(newMissile);
         }
