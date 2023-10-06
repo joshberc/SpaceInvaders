@@ -50,8 +50,8 @@ namespace SpaceInvaders
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = Global.ScreenWidth;
+            graphics.PreferredBackBufferHeight = Global.ScreenHeight;
 
             IsMouseVisible = true;
         }
@@ -131,7 +131,7 @@ namespace SpaceInvaders
         #region Helper Functions
         private void SetupPlayer()
         {
-            PlayerSprite sprite = new PlayerSprite(new Sprite(playerTexture, new Vector2(400, 550), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
+            PlayerSprite sprite = new PlayerSprite(new Sprite(playerTexture, new Vector2(400, 550), new Rectangle(0, 0, 60, 32), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
             PlayerManager.Add(sprite);
         }
 
@@ -146,6 +146,7 @@ namespace SpaceInvaders
 
             Vector2 invaderPosition = start;
             Texture2D rowSprite = redEnemyTexture;
+            Rectangle rowCollider = new Rectangle(0, 0, 40, 32);
 
             //Populate Invader Manager
             for(int y  = 0; y < height; y++, invaderPosition.Y = start.Y + (y * yOffset))
@@ -158,22 +159,46 @@ namespace SpaceInvaders
                 {
                     case 2:
                         rowSprite = yellowEnemyTexture;
+                        rowCollider = new Rectangle(0, 0, 40, 32);
                         break;
                     case 3:
                         rowSprite = blueEnemyTexture;
+                        rowCollider = new Rectangle(0, 0, 40, 22);
                         break;
                     case 4:
                         rowSprite = greenEnemyTexture;
+                        rowCollider = new Rectangle(0, 0, 40, 32);
                         break;
                 }
                     
                 for (int x = 0; x < width; x++, invaderPosition.X = start.X + (x * xOffset))
                 {                               
-                    InvaderSprite sprite = new InvaderSprite(new Sprite(rowSprite, invaderPosition, Color.White, new Vector2(1, 1), SpriteEffects.None, speed));
+                    InvaderSprite sprite = new InvaderSprite(new Sprite(rowSprite, invaderPosition, rowCollider, Color.White, new Vector2(1, 1), SpriteEffects.None, speed));
                     InvaderManager.Add(sprite);
                 }
             }
-            
+        }
+
+        public bool CheckInvaderCollision(Rectangle obj)
+        {
+            bool collided = false;
+
+            if(InvaderManager.ObjectCount > 0)
+            {
+                for(int i = 0; i < InvaderManager.ObjectCount; i++)
+                {
+                    var sprite = (Sprite)InvaderManager[i];
+
+                    if(sprite.CheckCollision(obj) == true)
+                    {
+                        InvaderManager.MarkForRemoval(sprite.BaseID);
+                        collided = true;
+                        break;
+                    }
+                }
+            }
+
+            return collided;
         }
         #endregion
     }

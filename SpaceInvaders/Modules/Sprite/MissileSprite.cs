@@ -13,7 +13,7 @@ namespace SpaceInvaders.Modules.Sprite
         private float acceleration = -2.0f;
 
         #region Core
-        public MissileSprite(Sprite newSprite) : base(newSprite.SpriteTexture, newSprite.Position, newSprite.Color, newSprite.Scale, newSprite.Effect, newSprite.Speed)
+        public MissileSprite(Sprite newSprite) : base(newSprite.SpriteTexture, newSprite.Position, newSprite.Collider, newSprite.Color, newSprite.Scale, newSprite.Effect, newSprite.Speed)
         { 
         }
 
@@ -32,6 +32,12 @@ namespace SpaceInvaders.Modules.Sprite
                 acceleration -= 0.03f;
 
                 Position = pos;
+            }
+
+            //Collision detection
+            if (Global.Instance.CoreGame.CheckInvaderCollision(GetSpriteCollider()))
+            {
+                Global.Instance.CoreGame.MissileController.MarkForRemoval(BaseID);
             }
 
             base.Update(gameTime);

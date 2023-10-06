@@ -2,20 +2,19 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Modules.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceInvaders.Modules.Sprite
 {
     public class PlayerSprite : Sprite
     {
+        #region Variables
+        private int playerWidth = 60;
         private bool shooting = false;
+        private float moveSpeed = 2.0f;
+        #endregion
 
         #region Core
-        public PlayerSprite(Sprite newSprite) : base(newSprite.SpriteTexture, newSprite.Position, newSprite.Color, newSprite.Scale, newSprite.Effect, newSprite.Speed)
+        public PlayerSprite(Sprite newSprite) : base(newSprite.SpriteTexture, newSprite.Position, newSprite.Collider, newSprite.Color, newSprite.Scale, newSprite.Effect, newSprite.Speed)
         {
         }
 
@@ -26,11 +25,11 @@ namespace SpaceInvaders.Modules.Sprite
             if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
             {
                 Vector2 pos = Position;
-                pos.X -= 2.0f;
+                pos.X -= moveSpeed;
 
-                if (pos.X < 40.0f)
+                if (pos.X < 0)
                 {
-                    pos.X = 40.0f;
+                    pos.X = 0;
                 }
                 Position = pos;
             }
@@ -38,16 +37,18 @@ namespace SpaceInvaders.Modules.Sprite
             if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
             {
                 Vector2 pos = Position;
-                pos.X += 2.0f;
-                if (pos.X > 760)  
+                pos.X += moveSpeed;
+                int offset = Global.ScreenWidth - playerWidth;
+
+                if (pos.X > offset)  
                 {
-                    pos.X = 760;
+                    pos.X = offset;
                 }
 
                 Position = pos;
             }
 
-            // Fire bullet....
+            // Fire Missile
             if ((Keyboard.GetState().IsKeyDown(Keys.Space) == true) && (shooting == false))
             {
                 shooting = true;
@@ -58,10 +59,7 @@ namespace SpaceInvaders.Modules.Sprite
                 shooting = false;
             }
 
-
-
             base.Update(gameTime);
-
         }
 
         public override void Draw(GameTime gameTime)
@@ -72,7 +70,7 @@ namespace SpaceInvaders.Modules.Sprite
         private void FireBullet()
         {
             Texture2D missileTexture = Global.Instance.CoreGame.MissileTexture;
-            MissileSprite newMissile = new MissileSprite(new Sprite(missileTexture, new Vector2(Position.X + 27, Position.Y), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
+            MissileSprite newMissile = new MissileSprite(new Sprite(missileTexture, new Vector2(Position.X + 27, Position.Y), new Rectangle(0, 0, 2, 8), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
 
             Global.Instance.CoreGame.MissileController.Add(newMissile);
         }

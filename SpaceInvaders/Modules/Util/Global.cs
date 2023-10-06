@@ -6,8 +6,14 @@ namespace SpaceInvaders.Modules.Util
 {
     public sealed class Global
     {
+        #region Global Settings
         //Thread-safe singleton
         private static readonly Global instance = new Global();
+        public SpaceInvaders CoreGame { get; set; }
+
+        public static int ScreenWidth = 800;
+        public static int ScreenHeight = 600;
+        #endregion
 
         static Global()
         {
@@ -18,6 +24,6 @@ namespace SpaceInvaders.Modules.Util
             get { return (instance); }
         }
 
-        public SpaceInvaders CoreGame { get; set; }
+        
     }
 }

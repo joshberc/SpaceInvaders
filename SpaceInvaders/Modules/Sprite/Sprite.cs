@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SpaceInvaders.Modules.Game;
 using SpaceInvaders.Modules.Util;
+using System;
 
 namespace SpaceInvaders.Modules.Sprite
 {
@@ -10,6 +11,7 @@ namespace SpaceInvaders.Modules.Sprite
         #region Variables
         private Texture2D       spriteTexture;
         private Vector2         position;
+        private Rectangle       collider;
         private Vector2         origin;
         private Vector2         scale;
         private float           rotation;
@@ -30,6 +32,12 @@ namespace SpaceInvaders.Modules.Sprite
         {
             get { return position; }
             set { position = value; }
+        }
+
+        public Rectangle Collider
+        {
+            get { return collider; }
+            set { collider = value; }
         }
 
         public Vector2 Origin
@@ -86,11 +94,12 @@ namespace SpaceInvaders.Modules.Sprite
             position = newPosition;
         }
 
-        public Sprite(Texture2D newSpriteTexture, Vector2 newPosition, Color newColor, Vector2 newScale, SpriteEffects newEffects, float newSpeed)
+        public Sprite(Texture2D newSpriteTexture, Vector2 newPosition, Rectangle newCollider, Color newColor, Vector2 newScale, SpriteEffects newEffects, float newSpeed)
         {
             Reset();
             spriteTexture = newSpriteTexture;
             position = newPosition;
+            collider = newCollider;
             scale = newScale;
             color = newColor;
             effect = newEffects;
@@ -110,13 +119,24 @@ namespace SpaceInvaders.Modules.Sprite
         private void Reset()
         {
             position = new Vector2(0.0f);
-            origin = new Vector2(20, 0);
+            collider = new Rectangle(0, 0, 0, 0);
+            origin = new Vector2(0, 0);
             scale = new Vector2(1, 1);
             rotation = 0.0f;
             color = Color.White;
             effect = SpriteEffects.None;
             depth = 0.0f;
             speed = 0.0f;
+        }
+
+        public Rectangle GetSpriteCollider()
+        {
+            return (new Rectangle((int)Position.X, (int)Position.Y, (int)Collider.Width, (int)Collider.Height));
+        }
+
+        public bool CheckCollision(Rectangle obj)
+        {
+             return obj.Intersects(GetSpriteCollider());
         }
         #endregion
     }
