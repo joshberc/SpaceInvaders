@@ -27,4 +27,5 @@ In order to run, you must have .NET >= 6.0 and Monogame >= 3.8.1 installed on yo
 - Sound Effects provided by [MATRIXXX](https://freesound.org/people/MATRIXXX_/) under CC-BY 4.0.
 
 ## License
+Note: Only the code itself is subject to the MIT license. The assets (sprites and sounds) are covered under CC-BY 4.0 as mentioned above.
 MIT © [JoshBerc](https://github.com/joshberc)
