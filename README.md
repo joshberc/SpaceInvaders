@@ -23,8 +23,8 @@ In order to run, you must have .NET >= 6.0 and Monogame >= 3.8.1 installed on yo
 ![alt text](https://github.com/joshberc/SpaceInvaders/blob/main/ScreenShot.PNG)
 
 ## Credits
-Sprites provided by [Clear_Code](https://opengameart.org/content/assets-for-a-space-invader-like-game) under CC-BY 4.0.
-Sound Effects provided by [MATRIXXX](https://freesound.org/people/MATRIXXX_/) under CC-BY 4.0.
+* Sprites provided by [Clear_Code](https://opengameart.org/content/assets-for-a-space-invader-like-game) under CC-BY 4.0.
+* Sound Effects provided by [MATRIXXX](https://freesound.org/people/MATRIXXX_/) under CC-BY 4.0.
 
 ## License
 MIT © [JoshBerc](https://github.com/joshberc)
