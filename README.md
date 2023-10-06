@@ -19,7 +19,7 @@ In order to run, you must have .NET >= 6.0 and Monogame >= 3.8.1 installed on yo
 3. In the terminal: "dotnet build SpaceInvaders.csproj" to build the project.
 4. In the terminal: "dotnet run SpaceInvaders.csproj" to run the built project.
 
-![alt text](https://github.com/JoshB63/SpaceInvaders/blob/master/ScreenShot.PNG?raw=true)
+![alt text](https://github.com/joshberc/SpaceInvaders/blob/main/ScreenShot.PNG)
 
 ## Credits
 Sprites provided by [Clear_Code](https://opengameart.org/content/assets-for-a-space-invader-like-game) under CC-BY 4.0.
