@@ -1,11 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Modules.Game;
 using SpaceInvaders.Modules.Manager;
 using SpaceInvaders.Modules.Sprite;
 using SpaceInvaders.Modules.Util;
-using System;
+using System.Collections.Generic;
 
 namespace SpaceInvaders
 {
@@ -21,6 +22,8 @@ namespace SpaceInvaders
         private Texture2D               blueEnemyTexture;
         private Texture2D               greenEnemyTexture;
         private Texture2D               yellowEnemyTexture;
+
+        private List<SoundEffect>       soundEffects;
 
         private TManager<GameObject> InvaderManager = new TManager<GameObject>();
         private TManager<GameObject> PlayerManager = new TManager<GameObject>();
@@ -41,6 +44,11 @@ namespace SpaceInvaders
         public Texture2D MissileTexture
         {
             get { return missileTexture; }
+        }
+
+        public List<SoundEffect> SoundEffects 
+        { 
+            get { return soundEffects; } 
         }
         #endregion
 
@@ -78,7 +86,10 @@ namespace SpaceInvaders
         {
             spriteBatch         = new SpriteBatch(GraphicsDevice);
 
+            //Load Fonts
             atroxFont           = Content.Load<SpriteFont>("Atrox");
+
+            //Load Sprites
             playerTexture       = Content.Load<Texture2D>("player");
             missileTexture      = Content.Load<Texture2D>("missile");
             redEnemyTexture     = Content.Load<Texture2D>("enemy-red");
@@ -86,6 +97,12 @@ namespace SpaceInvaders
             greenEnemyTexture   = Content.Load<Texture2D>("enemy-green");
             yellowEnemyTexture  = Content.Load<Texture2D>("enemy-yellow");
 
+            //Load Sound Effects
+            soundEffects = new List<SoundEffect>();
+            soundEffects.Add(Content.Load<SoundEffect>("retro-shoot-sound"));
+            soundEffects.Add(Content.Load<SoundEffect>("retro-explosion-sound"));
+
+            //Run game Setup
             SetupPlayer();
             SetupInvaders();
         }
@@ -203,6 +220,7 @@ namespace SpaceInvaders
                     {
                         InvaderManager.MarkForRemoval(sprite.BaseID);
                         collided = true;
+                        soundEffects[1].Play(0.3f, 1.0f, 1.0f);
                         break;
                     }
                 }

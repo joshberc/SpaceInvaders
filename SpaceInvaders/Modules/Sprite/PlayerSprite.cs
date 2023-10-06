@@ -80,6 +80,7 @@ namespace SpaceInvaders.Modules.Sprite
             MissileSprite newMissile = new MissileSprite(new Sprite(missileTexture, new Vector2(Position.X + 27, Position.Y), new Rectangle(0, 0, 2, 8), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
 
             Global.Instance.CoreGame.MissileController.Add(newMissile);
+            Global.Instance.CoreGame.SoundEffects[0].Play(0.3f, 1.0f, 1.0f);
         }
         #endregion
     }

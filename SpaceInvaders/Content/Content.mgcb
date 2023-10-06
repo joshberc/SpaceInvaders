@@ -92,3 +92,15 @@
 /processorParam:TextureFormat=Color
 /build:player.png
 
+#begin retro-explosion-sound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:retro-explosion-sound.wav
+
+#begin retro-shoot-sound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:retro-shoot-sound.wav
+
