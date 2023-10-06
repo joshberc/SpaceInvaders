@@ -1,5 +1,25 @@
 # Space Invaders
- An open-source game inspired by the classic Space Invaders, built using the Monogame framework.
+ An open-source game inspired by the classic Space Invaders, built using the Monogame framework. It provides a template example of a generic project structure and can be expanded out into a full 2D game project.
+
+### Features
+* Player Movement
+* Projectile Colisions
+* Game Object Managers
+
+#### Controls
+* **A**: Move left
+* **D**: Move Right
+* **Space**: Shoot Missile
+
+### Installing and Running this solution
+In order to run, you must have .NET >= 6.0 and Monogame >= 3.8.1 installed on your machine.
+
+1. Clone the respository to a new folder on your local machine. Alternatively, download the solution as a ZIP and Unzip.
+2. Navigate to the folder contain the SpaceInvaders.csproj via the terminal or open in Visual Studio and Build then Run.
+3. In the terminal: "dotnet build SpaceInvaders.csproj" to build the project.
+4. In the terminal: "dotnet run SpaceInvaders.csproj" to run the built project.
+
+![alt text](https://github.com/JoshB63/SpaceInvaders/blob/master/ScreenShot.PNG?raw=true)
 
 ## Credits
 Sprites provided by [Clear_Code](https://opengameart.org/content/assets-for-a-space-invader-like-game) under CC-BY 4.0.
