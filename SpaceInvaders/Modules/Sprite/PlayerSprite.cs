@@ -18,6 +18,10 @@ namespace SpaceInvaders.Modules.Sprite
         {
         }
 
+        /// <summary>
+        /// Handle player controls.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
 
@@ -52,7 +56,7 @@ namespace SpaceInvaders.Modules.Sprite
             if ((Keyboard.GetState().IsKeyDown(Keys.Space) == true) && (shooting == false))
             {
                 shooting = true;
-                FireBullet();
+                FireMissile();
             }
             if ((Keyboard.GetState().IsKeyUp(Keys.Space) == true) && (shooting == true))
             {
@@ -67,7 +71,10 @@ namespace SpaceInvaders.Modules.Sprite
             base.Draw(gameTime);
         }
 
-        private void FireBullet()
+        /// <summary>
+        /// Create new Missile object.
+        /// </summary>
+        private void FireMissile()
         {
             Texture2D missileTexture = Global.Instance.CoreGame.MissileTexture;
             MissileSprite newMissile = new MissileSprite(new Sprite(missileTexture, new Vector2(Position.X + 27, Position.Y), new Rectangle(0, 0, 2, 8), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));

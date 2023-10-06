@@ -45,6 +45,9 @@ namespace SpaceInvaders
         #endregion
 
         #region Core
+        /// <summary>
+        /// Initialize game settings.
+        /// </summary>
         public SpaceInvaders()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -68,7 +71,8 @@ namespace SpaceInvaders
         }
 
         /// <summary>
-        /// Load game content.
+        /// Load all game content.
+        /// Note that content must be first be imported by the mgcb importer located in the Content folder.
         /// </summary>
         protected override void LoadContent()
         {
@@ -129,12 +133,18 @@ namespace SpaceInvaders
         #endregion
 
         #region Helper Functions
+        /// <summary>
+        /// Add player object to the game.
+        /// </summary>
         private void SetupPlayer()
         {
             PlayerSprite sprite = new PlayerSprite(new Sprite(playerTexture, new Vector2(400, 550), new Rectangle(0, 0, 60, 32), Color.White, new Vector2(1, 1), SpriteEffects.None, 0.0f));
             PlayerManager.Add(sprite);
         }
 
+        /// <summary>
+        /// Add all invader objects to the game.
+        /// </summary>
         private void SetupInvaders()
         {
             Vector2 start   = new Vector2(10.0f, 80.0f);

@@ -1,12 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-namespace SpaceInvaders.Modules.Util
+﻿namespace SpaceInvaders.Modules.Util
 {
     public sealed class Global
     {
-        #region Global Settings
+        #region Global References
         //Thread-safe singleton
         private static readonly Global instance = new Global();
         public SpaceInvaders CoreGame { get; set; }
@@ -23,7 +19,5 @@ namespace SpaceInvaders.Modules.Util
         {
             get { return (instance); }
         }
-
-        
     }
 }

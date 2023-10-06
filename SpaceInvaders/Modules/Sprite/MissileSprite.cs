@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using SpaceInvaders.Modules.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpaceInvaders.Modules.Sprite
 {
@@ -17,6 +12,10 @@ namespace SpaceInvaders.Modules.Sprite
         { 
         }
 
+        /// <summary>
+        /// Handle Missile Logic.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             if (Position.Y < -30.0f)

@@ -8,6 +8,11 @@ using System.Collections.Generic;
 
 namespace SpaceInvaders.Modules.Manager
 {
+    /// <summary>
+    /// This is a generic game object manager that can be extended to manager groups of game objects.
+    /// It allows you to easily update/edit/delete all game objects within the given group during the update/Draw methods.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class TManager<T> where T : GameObject
     {
         #region Variables
@@ -41,6 +46,11 @@ namespace SpaceInvaders.Modules.Manager
             ID = 0;
         }
 
+        /// <summary>
+        /// Add this object to the manager.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public Int32 Add(T obj)
         {
             obj.BaseID = ID++;
@@ -49,6 +59,10 @@ namespace SpaceInvaders.Modules.Manager
             return obj.BaseID;
         }
 
+        /// <summary>
+        /// Mark this object to be removed in the next Update.
+        /// </summary>
+        /// <param name="id"></param>
         public void MarkForRemoval(Int32 id) 
         {
             DeleteList.Add(id);
